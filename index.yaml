@@ -3,6 +3,29 @@ entries:
   astarte-operator:
   - apiVersion: v2
     appVersion: 1.0.0-alpha.1
+    created: "2021-02-08T12:53:13.733812258Z"
+    description: A Helm chart for Kubernetes
+    digest: ecceb301954077d13e7363f3a01e6b7edd933b74ea0c71388df53e020fdd2988
+    home: https://github.com/astarte-platform/astarte-kubernetes-operator
+    icon: https://github.com/astarte-platform/astarte-kubernetes-operator/blob/master/mascotte.svg
+    keywords:
+    - astarte
+    - operator
+    - iot
+    - dataorchestration
+    kubeVersion: '>= 1.16.0-0'
+    maintainers:
+    - email: dario.freddi@ispirata.com
+      name: drf
+    name: astarte-operator
+    sources:
+    - https://github.com/astarte-platform/astarte-kubernetes-operator
+    type: application
+    urls:
+    - https://github.com/astarte-platform/helm/releases/download/astarte-operator-1.0.0-alpha.8/astarte-operator-1.0.0-alpha.8.tgz
+    version: 1.0.0-alpha.8
+  - apiVersion: v2
+    appVersion: 1.0.0-alpha.1
     created: "2021-02-05T13:45:34.162919973Z"
     description: A Helm chart for Kubernetes
     digest: 5de668b1f866c6adb055f7e12aa05dcbc5afef155099d20ff357eea31ef4c731
