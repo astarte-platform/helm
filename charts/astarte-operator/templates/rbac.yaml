@@ -137,6 +137,14 @@ rules:
   verbs:
   - update
 - apiGroups:
+  - autoscaling
+  resources:
+  - horizontalpodautoscalers
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
   - batch
   resources:
   - jobs
@@ -153,9 +161,7 @@ rules:
   resources:
   - configmaps
   - endpoints
-  - events
   - persistentvolumeclaims
-  - pods
   - secrets
   - serviceaccounts
   - services
@@ -177,6 +183,29 @@ rules:
   verbs:
   - create
   - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - get
+  - list
+  - patch
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - create
+  - delete
+  - deletecollection
   - get
   - list
   - patch
@@ -218,7 +247,7 @@ rules:
 - apiGroups:
   - networking.k8s.io
   resources:
-  - '*'
+  - ingresses
   verbs:
   - create
   - delete
@@ -239,6 +268,16 @@ rules:
   - list
   - patch
   - update
+  - watch
+- apiGroups:
+  - scheduling.k8s.io
+  resources:
+  - priorityclasses
+  verbs:
+  - create
+  - delete
+  - get
+  - list
   - watch
 - apiGroups:
   - voyager.appscode.com
@@ -332,6 +371,7 @@ spec:
   ports:
   - name: https
     port: 8443
+    protocol: TCP
     targetPort: https
   selector:
     control-plane: controller-manager
