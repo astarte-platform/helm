@@ -1,11 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
+  labels:
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: astarte-kubernetes-operator
   name: '{{ .Release.Name }}-webhook-service'
   namespace: '{{ .Release.Namespace }}'
 spec:
   ports:
   - port: 443
+    protocol: TCP
     targetPort: 9443
   selector:
     control-plane: controller-manager
@@ -13,7 +17,31 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: '{{ .Release.Name }}-manager-webhook'
+  labels:
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: astarte-kubernetes-operator
+  name: '{{ .Release.Name }}-metrics-certs'
+  namespace: '{{ .Release.Namespace }}'
+spec:
+  dnsNames:
+  - SERVICE_NAME.SERVICE_NAMESPACE.svc
+  - SERVICE_NAME.SERVICE_NAMESPACE.svc.cluster.local
+  issuerRef:
+    kind: Issuer
+    name: '{{ .Release.Name }}-selfsigned-issuer'
+  secretName: metrics-server-cert
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  labels:
+    app.kubernetes.io/component: certificate
+    app.kubernetes.io/created-by: astarte-kubernetes-operator
+    app.kubernetes.io/instance: serving-cert
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: certificate
+    app.kubernetes.io/part-of: astarte-kubernetes-operator
+  name: '{{ .Release.Name }}-serving-cert'
   namespace: '{{ .Release.Namespace }}'
 spec:
   dnsNames:
@@ -27,6 +55,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
+  labels:
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: astarte-kubernetes-operator
   name: '{{ .Release.Name }}-selfsigned-issuer'
   namespace: '{{ .Release.Namespace }}'
 spec:
@@ -36,7 +67,7 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: '{{ .Release.Namespace }}/{{ .Release.Name }}-manager-webhook'
+    cert-manager.io/inject-ca-from: '{{ .Release.Namespace }}/{{ .Release.Name }}-serving-cert'
   name: '{{ .Release.Name }}-mutating-webhook-configuration'
 webhooks:
 - admissionReviewVersions:
@@ -45,14 +76,14 @@ webhooks:
     service:
       name: '{{ .Release.Name }}-webhook-service'
       namespace: '{{ .Release.Namespace }}'
-      path: /mutate-api-astarte-platform-org-v1alpha2-astarte
+      path: /mutate-api-astarte-platform-org-v2alpha1-astarte
   failurePolicy: Fail
   name: mastarte.kb.io
   rules:
   - apiGroups:
     - api.astarte-platform.org
     apiVersions:
-    - v1alpha2
+    - v2alpha1
     operations:
     - CREATE
     - UPDATE
@@ -65,14 +96,14 @@ webhooks:
     service:
       name: '{{ .Release.Name }}-webhook-service'
       namespace: '{{ .Release.Namespace }}'
-      path: /mutate-api-astarte-platform-org-v1alpha2-flow
+      path: /mutate-flow-astarte-platform-org-v2alpha1-flow
   failurePolicy: Fail
   name: mflow.kb.io
   rules:
   - apiGroups:
-    - api.astarte-platform.org
+    - flow.astarte-platform.org
     apiVersions:
-    - v1alpha2
+    - v2alpha1
     operations:
     - CREATE
     - UPDATE
@@ -85,14 +116,14 @@ webhooks:
     service:
       name: '{{ .Release.Name }}-webhook-service'
       namespace: '{{ .Release.Namespace }}'
-      path: /mutate-ingress-astarte-platform-org-v1alpha1-astartedefaultingress
+      path: /mutate-ingress-astarte-platform-org-v2alpha1-astartedefaultingress
   failurePolicy: Fail
   name: mastartedefaultingress.kb.io
   rules:
   - apiGroups:
     - ingress.astarte-platform.org
     apiVersions:
-    - v1alpha1
+    - v2alpha1
     operations:
     - CREATE
     - UPDATE
@@ -104,7 +135,7 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: '{{ .Release.Namespace }}/{{ .Release.Name }}-manager-webhook'
+    cert-manager.io/inject-ca-from: '{{ .Release.Namespace }}/{{ .Release.Name }}-serving-cert'
   name: '{{ .Release.Name }}-validating-webhook-configuration'
 webhooks:
 - admissionReviewVersions:
@@ -113,14 +144,14 @@ webhooks:
     service:
       name: '{{ .Release.Name }}-webhook-service'
       namespace: '{{ .Release.Namespace }}'
-      path: /validate-api-astarte-platform-org-v1alpha2-astarte
+      path: /validate-api-astarte-platform-org-v2alpha1-astarte
   failurePolicy: Fail
   name: vastarte.kb.io
   rules:
   - apiGroups:
     - api.astarte-platform.org
     apiVersions:
-    - v1alpha2
+    - v2alpha1
     operations:
     - CREATE
     - UPDATE
@@ -133,14 +164,14 @@ webhooks:
     service:
       name: '{{ .Release.Name }}-webhook-service'
       namespace: '{{ .Release.Namespace }}'
-      path: /validate-api-astarte-platform-org-v1alpha2-flow
+      path: /validate-flow-astarte-platform-org-v2alpha1-flow
   failurePolicy: Fail
   name: vflow.kb.io
   rules:
   - apiGroups:
-    - api.astarte-platform.org
+    - flow.astarte-platform.org
     apiVersions:
-    - v1alpha2
+    - v2alpha1
     operations:
     - CREATE
     - UPDATE
@@ -153,14 +184,14 @@ webhooks:
     service:
       name: '{{ .Release.Name }}-webhook-service'
       namespace: '{{ .Release.Namespace }}'
-      path: /validate-ingress-astarte-platform-org-v1alpha1-astartedefaultingress
+      path: /validate-ingress-astarte-platform-org-v2alpha1-astartedefaultingress
   failurePolicy: Fail
   name: vastartedefaultingress.kb.io
   rules:
   - apiGroups:
     - ingress.astarte-platform.org
     apiVersions:
-    - v1alpha1
+    - v2alpha1
     operations:
     - CREATE
     - UPDATE
