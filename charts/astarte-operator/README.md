@@ -2,7 +2,7 @@
 
 [astarte-operator](https://github.com/astarte-platform/astarte-kubernetes-operator) Astarte Kubernetes Operator.
 
-![Version: 26.5.0-dev](https://img.shields.io/badge/Version-26.5.0--dev-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 26.5.0-dev](https://img.shields.io/badge/AppVersion-26.5.0--dev-informational?style=flat-square)
+![Version: 26.5.0-alpha.0](https://img.shields.io/badge/Version-26.5.0--alpha.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 26.5.0-alpha.0](https://img.shields.io/badge/AppVersion-26.5.0--alpha.0-informational?style=flat-square)
 
 This chart bootstraps an Astarte Operator deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
 
