@@ -8134,6 +8134,44 @@ spec:
                 distributionChannel:
                   default: astarte
                   type: string
+                fdo:
+                  properties:
+                    enable:
+                      type: boolean
+                    rendezvousServer:
+                      properties:
+                        connection:
+                          properties:
+                            host:
+                              minLength: 1
+                              type: string
+                            port:
+                              format: int32
+                              maximum: 65535
+                              minimum: 1
+                              type: integer
+                            sslConfiguration:
+                              properties:
+                                customCASecret:
+                                  properties:
+                                    name:
+                                      default: ""
+                                      type: string
+                                  type: object
+                                  x-kubernetes-map-type: atomic
+                                customSNI:
+                                  type: string
+                                enable:
+                                  type: boolean
+                                sni:
+                                  type: boolean
+                              type: object
+                          required:
+                            - host
+                            - port
+                          type: object
+                      type: object
+                  type: object
                 features:
                   properties:
                     astartePodPriorities:
@@ -8155,25 +8193,6 @@ spec:
                       type: object
                     autoscaling:
                       type: boolean
-                    fdo:
-                      properties:
-                        enable:
-                          type: boolean
-                        rendezvousServer:
-                          properties:
-                            host:
-                              minLength: 1
-                              type: string
-                            port:
-                              format: int32
-                              maximum: 65535
-                              minimum: 1
-                              type: integer
-                          required:
-                            - host
-                            - port
-                          type: object
-                      type: object
                     realmDeletion:
                       type: boolean
                   type: object
