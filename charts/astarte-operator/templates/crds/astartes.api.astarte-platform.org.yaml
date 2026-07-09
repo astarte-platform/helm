@@ -16,7 +16,25 @@ spec:
     singular: astarte
   scope: Namespaced
   versions:
-    - name: v2alpha1
+    - additionalPrinterColumns:
+        - jsonPath: .status.operatorVersion
+          name: Operator Version
+          type: string
+        - jsonPath: .status.astarteVersion
+          name: Astarte Version
+          type: string
+        - jsonPath: .status.health
+          name: Status
+          type: string
+        - jsonPath: .status.baseAPIURL
+          name: Base API URL
+          priority: 1
+          type: string
+        - jsonPath: .status.brokerURL
+          name: Broker URL
+          priority: 1
+          type: string
+      name: v2alpha1
       schema:
         openAPIV3Schema:
           properties:
@@ -8341,6 +8359,51 @@ spec:
                   type: object
                 storageClassName:
                   type: string
+                vault:
+                  properties:
+                    connection:
+                      properties:
+                        connectionStringSecret:
+                          properties:
+                            key:
+                              minLength: 1
+                              type: string
+                            name:
+                              minLength: 1
+                              type: string
+                          required:
+                            - key
+                            - name
+                          type: object
+                        host:
+                          minLength: 1
+                          type: string
+                        port:
+                          format: int32
+                          maximum: 65535
+                          minimum: 1
+                          type: integer
+                        sslConfiguration:
+                          properties:
+                            customCASecret:
+                              properties:
+                                name:
+                                  default: ""
+                                  type: string
+                              type: object
+                              x-kubernetes-map-type: atomic
+                            customSNI:
+                              type: string
+                            enable:
+                              type: boolean
+                            sni:
+                              type: boolean
+                          type: object
+                      required:
+                        - host
+                        - port
+                      type: object
+                  type: object
                 vernemq:
                   properties:
                     additionalEnv:
