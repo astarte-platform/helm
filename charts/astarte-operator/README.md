@@ -2,7 +2,7 @@
 
 [astarte-operator](https://github.com/astarte-platform/astarte-kubernetes-operator) Astarte Kubernetes Operator.
 
-![Version: 26.7.0-rc.0](https://img.shields.io/badge/Version-26.7.0--rc.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 26.7.0-rc.0](https://img.shields.io/badge/AppVersion-26.7.0--rc.0-informational?style=flat-square)
+![Version: 26.7.0-rc.1](https://img.shields.io/badge/Version-26.7.0--rc.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 26.7.0-rc.1](https://img.shields.io/badge/AppVersion-26.7.0--rc.1-informational?style=flat-square)
 
 This chart bootstraps an Astarte Operator deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
 
@@ -31,7 +31,7 @@ Kubernetes: `>= 1.19.0-0`
 |-----|------|---------|-------------|
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"astarte/astarte-kubernetes-operator"` |  |
-| image.tag | string | `"26.7.0-rc.0"` | Overrides the image tag whose default is the chart appVersion. |
+| image.tag | string | `"26.7.0-rc.1"` | Overrides the image tag whose default is the chart appVersion. |
 | installCRDs | bool | `true` | Whether or not to install Astarte CRDs. |
 | metrics | object | `{"enable":false,"port":8443,"secure":true}` | Metrics configuration. Metrics are exposed on the configured port. When enabled, they use HTTPS by default. |
 | metrics.enable | bool | `false` | Whether to enable the metrics endpoint. |
