@@ -3,9 +3,9 @@ entries:
   astarte-operator:
   - apiVersion: v2
     appVersion: 26.7.0-rc.2
-    created: "2026-07-31T08:49:36.401850296Z"
+    created: "2026-08-04T12:52:16.778668028Z"
     description: The Astarte Kubernetes Operator Helm Chart.
-    digest: aeb25f2da2597c7b64f5af37af716372dee160cc78ad9819388d5130256417a7
+    digest: f5dab63aaee7abaa6175f263107cdd37e69a84cb00c8ff202052817038129513
     home: https://github.com/astarte-platform/astarte-kubernetes-operator
     icon: https://github.com/astarte-platform/astarte-kubernetes-operator/blob/master/mascotte.svg
     keywords:
@@ -35,6 +35,35 @@ entries:
     created: "2026-08-04T10:55:14.386225844Z"
     description: The Astarte Kubernetes Operator Helm Chart.
     digest: 201679414dbb4de515b7d752829f65be7b1703d2ab4c153392b3bcf6c1ce91da
+    home: https://github.com/astarte-platform/astarte-kubernetes-operator
+    icon: https://github.com/astarte-platform/astarte-kubernetes-operator/blob/master/mascotte.svg
+    keywords:
+    - astarte
+    - operator
+    - iot
+    - dataorchestration
+    kubeVersion: '>= 1.19.0-0'
+    maintainers:
+    - email: mattia.mazzucato@secomind.com
+      name: matt-mazzucato
+    - email: arnaldo.cesco@secomind.com
+      name: annopaolo
+    - email: luca.marchiori@secomind.com
+      name: lucamarchiori
+    - email: guilherme.crocetti@secomind.com
+      name: guicrocetti
+    name: astarte-operator
+    sources:
+    - https://github.com/astarte-platform/astarte-kubernetes-operator
+    type: application
+    urls:
+    - https://github.com/astarte-platform/helm/releases/download/astarte-operator-26.7.0-rc.2/astarte-operator-26.7.0-rc.2.tgz
+    version: 26.7.0-rc.2
+  - apiVersion: v2
+    appVersion: 26.7.0-rc.2
+    created: "2026-07-31T08:49:36.401850296Z"
+    description: The Astarte Kubernetes Operator Helm Chart.
+    digest: aeb25f2da2597c7b64f5af37af716372dee160cc78ad9819388d5130256417a7
     home: https://github.com/astarte-platform/astarte-kubernetes-operator
     icon: https://github.com/astarte-platform/astarte-kubernetes-operator/blob/master/mascotte.svg
     keywords:
