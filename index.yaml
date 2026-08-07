@@ -2,6 +2,35 @@ apiVersion: v1
 entries:
   astarte-operator:
   - apiVersion: v2
+    appVersion: 26.7.0-rc.4
+    created: "2026-08-07T12:45:12.758637607Z"
+    description: The Astarte Kubernetes Operator Helm Chart.
+    digest: 765f3c3d166d62089d60c2f504aff67f66b4f439cf22eb95a08a7c8795bee1f6
+    home: https://github.com/astarte-platform/astarte-kubernetes-operator
+    icon: https://raw.githubusercontent.com/astarte-platform/astarte-kubernetes-operator/release-26.7/docs/documentation/images/clea_color.png
+    keywords:
+    - astarte
+    - operator
+    - iot
+    - dataorchestration
+    kubeVersion: '>= 1.19.0-0'
+    maintainers:
+    - email: mattia.mazzucato@secomind.com
+      name: matt-mazzucato
+    - email: arnaldo.cesco@secomind.com
+      name: annopaolo
+    - email: luca.marchiori@secomind.com
+      name: lucamarchiori
+    - email: guilherme.crocetti@secomind.com
+      name: guicrocetti
+    name: astarte-operator
+    sources:
+    - https://github.com/astarte-platform/astarte-kubernetes-operator
+    type: application
+    urls:
+    - https://github.com/astarte-platform/helm/releases/download/astarte-operator-26.7.0-rc.4/astarte-operator-26.7.0-rc.4.tgz
+    version: 26.7.0-rc.4
+  - apiVersion: v2
     appVersion: 26.7.0-rc.3
     created: "2026-08-04T14:27:51.985674892Z"
     description: The Astarte Kubernetes Operator Helm Chart.
